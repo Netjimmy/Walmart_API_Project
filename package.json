@@ -1,0 +1,22 @@
+{
+  "name": "wta",
+  "version": "1.0.0",
+  "description": "This is a Walmart take home assignment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Jimmy Yang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.10",
+    "nodemon": "^1.18.9",
+    "request": "^2.88.0"
+  }
+}
