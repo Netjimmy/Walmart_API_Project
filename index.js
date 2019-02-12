@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
 const request = require("request");
 const keys = require("./config/dev");
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -16,35 +18,31 @@ const url = `http://api.walmartlabs.com/v1/items?ids=${itemList}&apiKey=${
 }`;
 
 app.get("/api", function(req, res) {
-  const keyword = req.query.keyword;
+  const keyword = req.query.keyword.toLowerCase();
   request(url, function(error, response, body) {
-    item_found = [];
-    const json = JSON.parse(body);
-    // res.send(json);
-    for (var i = 0; i < json["items"].length; i++) {
-      var valid = false;
-      if (json["items"][i]["shortDescription"]) {
-        var short_des = json["items"][i]["shortDescription"].toLowerCase();
-        if (short_des.includes(keyword)) {
-          valid = true;
-        }
-      }
+    const jsonObject = JSON.parse(body);
 
-      if (json["items"][i]["longDescription"]) {
-        var long_des = json["items"][i]["longDescription"].toLowerCase();
-        if (long_des.includes(keyword)) {
-          valid = true;
-        }
-      }
+    item_found = jsonObject.items
+      .filter(
+        item =>
+          (item.shortDescription &&
+            item.shortDescription.toLowerCase().includes(keyword)) ||
+          (item.longDescription &&
+            item.longDescription.toLowerCase().includes(keyword))
+      )
+      .map(item => ({
+        itemId: item.itemId,
+        name: item.name,
+        price: item.salePrice,
+        imgUrl: item.mediumImage,
+        webUrl: item.productUrl
+      }));
 
-      if (valid) {
-        item_found.push(json["items"][i]["itemId"]);
-      }
-    }
-    if (!item_found) {
+    if (item_found.length === 0) {
       res.status(500).send({ keyword: keyword, error: "No item found!" });
+    } else {
+      res.send({ keyword: keyword, itemIds: item_found });
     }
-    res.send({ keyword: keyword, itemIds: item_found });
   });
 });
 
