@@ -1,4 +1,5 @@
 import "whatwg-fetch";
+import axios from "axios";
 
 let instance = null;
 class HttpService {
@@ -9,10 +10,13 @@ class HttpService {
     return instance;
   }
   getData = keyword => {
-    var promise = new Promise((resolve, reject) => {
-      fetch("http://localhost:5000?keyword=" + keyword)
+    const promise = new Promise((resolve, reject) => {
+      // fetch("http://localhost:5000/search?keyword=" + keyword)
+      axios
+        .get("/api/search?keyword=" + keyword)
         .then(response => {
-          resolve(response.json());
+          // console.log(response.data);
+          resolve(response.data);
         })
         .catch(error => {
           console.log(error);

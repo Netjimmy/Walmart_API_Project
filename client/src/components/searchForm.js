@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 
 class SearchForm extends Component {
   constructor(props) {

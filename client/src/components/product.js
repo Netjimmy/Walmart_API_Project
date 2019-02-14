@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import "./product.css";
 
 class Product extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div className="card product mx-auto d-block">
@@ -19,6 +16,7 @@ class Product extends Component {
           <a
             href={this.props.product.webUrl}
             target="_blank"
+            rel="noopener noreferrer"
             className="btn btn-primary"
           >
             Go to website
