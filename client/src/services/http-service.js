@@ -10,7 +10,7 @@ class HttpService {
   }
   getData = keyword => {
     var promise = new Promise((resolve, reject) => {
-      fetch("http://localhost:5001/api?keyword=" + keyword)
+      fetch("http://localhost:5000?keyword=" + keyword)
         .then(response => {
           resolve(response.json());
         })

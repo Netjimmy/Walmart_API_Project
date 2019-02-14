@@ -17,35 +17,39 @@ const url = `http://api.walmartlabs.com/v1/items?ids=${itemList}&apiKey=${
   keys.walmartKey
 }`;
 
-app.get("/api", function(req, res) {
-  const keyword = req.query.keyword.toLowerCase();
-  request(url, function(error, response, body) {
-    const jsonObject = JSON.parse(body);
+app.get("/", function(req, res) {
+  if (!req.query.keyword) {
+    res.send("This is a Walmart keyword search API!");
+  } else {
+    const keyword = req.query.keyword.toLowerCase();
+    request(url, function(error, response, body) {
+      const jsonObject = JSON.parse(body);
 
-    item_found = jsonObject.items
-      .filter(
-        item =>
-          (item.shortDescription &&
-            item.shortDescription.toLowerCase().includes(keyword)) ||
-          (item.longDescription &&
-            item.longDescription.toLowerCase().includes(keyword))
-      )
-      .map(item => ({
-        itemId: item.itemId,
-        name: item.name,
-        price: item.salePrice,
-        imgUrl: item.mediumImage,
-        webUrl: item.productUrl
-      }));
+      item_found = jsonObject.items
+        .filter(
+          item =>
+            (item.shortDescription &&
+              item.shortDescription.toLowerCase().includes(keyword)) ||
+            (item.longDescription &&
+              item.longDescription.toLowerCase().includes(keyword))
+        )
+        .map(item => ({
+          itemId: item.itemId,
+          name: item.name,
+          price: item.salePrice,
+          imgUrl: item.mediumImage,
+          webUrl: item.productUrl
+        }));
 
-    if (item_found.length === 0) {
-      res.status(500).send({ keyword: keyword, error: "No item found!" });
-    } else {
-      res.send({ keyword: keyword, itemIds: item_found });
-    }
-  });
+      if (item_found.length === 0) {
+        res.status(500).send({ keyword: keyword, error: "No item found!" });
+      } else {
+        res.send({ keyword: keyword, itemIds: item_found });
+      }
+    });
+  }
 });
 
-app.listen(5001, function() {
-  console.log("API on port 5001!");
-});
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT);
