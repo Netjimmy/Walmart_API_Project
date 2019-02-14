@@ -19,10 +19,12 @@ mongoose.connect(keys.mongoURI, {
 
 let itemList = "";
 
+// The api page
 app.get("/api", function(req, res) {
   res.send("This is a Walmart keyword search API!");
 });
 
+// Fetch items from database
 app.get("/api/item", function(req, res) {
   Item.find({}, function(err, items) {
     if (err) {
@@ -33,6 +35,7 @@ app.get("/api/item", function(req, res) {
   });
 });
 
+// Update items to database
 app.post("/api/item", function(req, res) {
   const item = new Item(req.body);
   item.save(function(err, savedItem) {
@@ -44,6 +47,7 @@ app.post("/api/item", function(req, res) {
   });
 });
 
+// search items by keyword
 app.get("/api/search", function(req, res) {
   const url = `http://api.walmartlabs.com/v1/items?ids=${itemList}&apiKey=${
     keys.walmartKey
