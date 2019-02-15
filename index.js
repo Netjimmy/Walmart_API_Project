@@ -20,11 +20,16 @@ mongoose.connect(keys.mongoURI, {
 let itemList = "";
 
 // The api page
+// Code
+// 200        successful operation
 app.get("/api", function(req, res) {
   res.send("This is a Walmart keyword search API!");
 });
 
 // Fetch items from database
+// Code
+// 200        successful operation
+// 500        internal connection error
 app.get("/api/item", function(req, res) {
   Item.find({}, function(err, items) {
     if (err) {
@@ -36,6 +41,11 @@ app.get("/api/item", function(req, res) {
 });
 
 // Update items to database
+// Parameter:
+// ItemId: the id of each item
+// Code:
+// 200        successful operation
+// 500        internal connection error
 app.post("/api/item", function(req, res) {
   const item = new Item(req.body);
   item.save(function(err, savedItem) {
@@ -47,13 +57,18 @@ app.post("/api/item", function(req, res) {
   });
 });
 
-// search items by keyword
+// Search items by keyword
+// Parameter:
+// Keyword: the input keyword
+// Code:
+// 200        successful operation
+// 400        invalid input
 app.get("/api/search", function(req, res) {
   const url = `http://api.walmartlabs.com/v1/items?ids=${itemList}&apiKey=${
     keys.walmartKey
   }`;
   if (!req.query.keyword) {
-    res.status(500).send({ error: "Please enter keyword" });
+    res.status(400).send({ error: "Please enter keyword" });
   } else {
     const keyword = req.query.keyword.toLowerCase();
     request(url, function(error, response, body) {
@@ -74,12 +89,7 @@ app.get("/api/search", function(req, res) {
           imgUrl: item.mediumImage,
           webUrl: item.productUrl
         }));
-
-      if (item_found.length === 0) {
-        res.status(500).send({ keyword: keyword, error: "No item found!" });
-      } else {
-        res.send({ keyword: keyword, itemIds: item_found });
-      }
+      res.send({ keyword: keyword, itemIds: item_found });
     });
   }
 });
