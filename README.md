@@ -1,6 +1,6 @@
 ## Getting Started
 
-### 1. install **node.js** and **mongoDB**
+1. install **node.js** and **mongoDB**
 
 I use the online MongoDB service [mLab](https://mlab.com/)
 Follow the [tutorial](https://medium.com/javascript-in-plain-english/full-stack-mongodb-react-node-js-express-js-in-one-simple-app-6cc8ed6de274) here
@@ -25,9 +25,9 @@ The only table **Items** schema is like:
 ]
 ```
 
-### 2. Download the **Walmart_API_Project** from repo and install the dependencies
+2. Download the **Walmart_API_Project** from repo and install the dependencies
 
-#### Under `Walmart_API_Project` and `Walmart_API_Project\client`, execute the install command
+Under `Walmart_API_Project` and `Walmart_API_Project\client`, execute the install command
 
 ```
 npm install
@@ -42,7 +42,7 @@ module.exports = {
 };
 ```
 
-### 3. Run `npm run dev`, it will initiate the node server at **http://127.0.0.1:5000** and react server at at **http://127.0.0.1:3000**
+3. Run `npm run dev`, it will initiate the node server at **http://127.0.0.1:5000** and react server at at **http://127.0.0.1:3000**
 
 ## The function of website
 
