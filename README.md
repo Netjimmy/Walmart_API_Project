@@ -33,7 +33,7 @@ Under `Walmart_API_Project` and `Walmart_API_Project\client`, execute the instal
 npm install
 ```
 
-and reate a **dev.js** file under **config** folder and put the words as following
+and create a **dev.js** file under **config** folder and put the words as following
 
 ```
 module.exports = {
