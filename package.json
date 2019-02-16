@@ -21,8 +21,10 @@
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "mocha": "^5.2.0",
     "mongoose": "^5.4.10",
     "nodemon": "^1.18.9",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "supertest": "^3.4.2"
   }
 }

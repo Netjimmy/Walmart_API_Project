@@ -109,7 +109,7 @@ if (process.env.NODE_ENV === "production") {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, async function() {
+const server = app.listen(PORT, async function() {
   await Item.find({}, function(err, items) {
     if (err) {
       res.status(500).send({ error: "Could not load data from database" });
@@ -121,3 +121,5 @@ app.listen(PORT, async function() {
     }
   });
 });
+
+module.exports = server;

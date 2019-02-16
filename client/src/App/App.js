@@ -9,18 +9,24 @@ const http = new HttpService();
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { itemList: [] };
+    this.state = { itemList: [], noKeywordError: "" };
     this.getKeyWord = this.getKeyWord.bind(this);
   }
 
   getKeyWord = keyword => {
-    http.getData(keyword).then(data => {
-      if (data.itemIds) {
-        this.setState({ itemList: data.itemIds });
-      } else {
-        this.setState({ itemList: [] });
-      }
-    });
+    http
+      .getData(keyword)
+      .then(data => {
+        this.setState({ noKeywordError: "" });
+        if (data.itemIds) {
+          this.setState({ itemList: data.itemIds });
+        } else {
+          this.setState({ itemList: [] });
+        }
+      })
+      .catch(err => {
+        this.setState({ noKeywordError: "Please enter keyword!" });
+      });
   };
 
   render() {
@@ -28,6 +34,9 @@ class App extends Component {
       <div className="App">
         <div>
           <SearchForm onSubmit={this.getKeyWord} />
+        </div>
+        <div>
+          <h3>{this.state.noKeywordError}</h3>
         </div>
         <div>
           <h3>{this.state.itemList.length} relevant items found</h3>
