@@ -1,22 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import Product from "./product.js";
 
-class ProductList extends Component {
-  constructor(props) {
-    super(props);
-    this.getProductList = this.getProductList.bind(this);
-  }
-
-  getProductList = () => {
-    const list = this.props.itemList.map(product => (
-      <Product product={product} key={product.itemId} />
-    ));
-    return list;
-  };
-
-  render() {
-    return <div>{this.getProductList()}</div>;
-  }
+function ProductList(props) {
+  const list = props.itemList.map(product => (
+    <Product product={product} key={product.itemId} />
+  ));
+  return <div>{list}</div>;
 }
 
 export default ProductList;
