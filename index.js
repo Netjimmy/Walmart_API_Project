@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const request = require("request");
-const keys = require("./config/dev");
+const keys = require("./config/keys");
 
 // The mongodb schema
 const Item = require("./model/item");
