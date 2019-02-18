@@ -46,7 +46,7 @@ module.exports = {
 
 4. Run `mocha -R spec spec.js` to run the unit test
 
-![Screenshot](pic/unit_test.png)
+<img src="pic/unit_test.png" width="500">
 
 ## The functions of website
 
