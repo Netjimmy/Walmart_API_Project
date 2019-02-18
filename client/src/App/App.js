@@ -26,6 +26,7 @@ class App extends Component {
       })
       .catch(err => {
         this.setState({ noKeywordError: "Please enter keyword!" });
+        this.setState({ itemList: [] });
       });
   };
 
