@@ -3,6 +3,7 @@
 1. install **node.js** and **mongoDB**
 
 I use the online MongoDB service [mLab](https://mlab.com/)
+
 Follow the [tutorial](https://medium.com/javascript-in-plain-english/full-stack-mongodb-react-node-js-express-js-in-one-simple-app-6cc8ed6de274) here
 
 The only table **Items** schema is like:
@@ -27,7 +28,7 @@ The only table **Items** schema is like:
 
 2. Download the **Walmart_API_Project** from repo and install the dependencies
 
-Under `Walmart_API_Project` and `Walmart_API_Project\client`, execute the install command
+Under `Walmart_API_Project` and `Walmart_API_Project/client`, execute the install command
 
 ```
 npm install
