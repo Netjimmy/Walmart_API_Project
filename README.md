@@ -26,6 +26,7 @@ The only table **Items** schema is like:
 ]
 ```
 
+
 2. Download the **Walmart_API_Project** from repo and install the dependencies
 
 Under `Walmart_API_Project` and `Walmart_API_Project/client`, execute the install command
@@ -43,11 +44,15 @@ module.exports = {
 };
 ```
 
+
 3. Run `npm run dev`, it will initiate the node server at **http://127.0.0.1:5000** and react server at at **http://127.0.0.1:3000**
+
 
 4. Run `mocha -R spec spec.js` to run the unit test
 
 <img src="pic/unit_test.png" width="500">
+
+
 
 ## The functions of website
 
