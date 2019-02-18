@@ -1,11 +1,13 @@
 const request = require("supertest");
+// require = require("really-need");
 describe("loading express", function() {
   var server;
   beforeEach(function() {
+    delete require.cache[require.resolve("./index")];
     server = require("./index");
   });
-  afterEach(function() {
-    server.close();
+  afterEach(function(done) {
+    server.close(done());
   });
   it("responds to /api", function test(done) {
     request(server)

@@ -17,7 +17,8 @@ mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true
 });
 
-let itemList = "";
+let itemList =
+  "14225185,14225186,14225188,14225187,39082884,30146244,12662817,34890820,19716431,42391766,35813552,40611708,40611825,36248492,44109840,23117408,35613901,42248076";
 
 // The api page
 // Code
@@ -114,6 +115,7 @@ const server = app.listen(PORT, async function() {
     if (err) {
       res.status(500).send({ error: "Could not load data from database" });
     } else {
+      itemList = "";
       items.forEach(function(ele) {
         itemList += ele.itemId + ",";
       });
