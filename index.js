@@ -24,14 +24,26 @@ let itemList =
 // Code
 // 200        successful operation
 app.get("/api", function(req, res) {
-  res.send("This is a Walmart keyword search API!");
+  res.send({
+    api: "This is Walmart API",
+    links: [
+      {
+        rel: "Collection of itemMeta by search keyword",
+        href:
+          "https://aqueous-sea-19355.herokuapp.com/itemMeta?keyword={keyword}",
+        title: "List of itemMeta",
+        action: "GET",
+        type: "application/json"
+      }
+    ]
+  });
 });
 
 // Fetch items from database
 // Code
 // 200        successful operation
-// 500        internal connection error
-app.get("/api/item", function(req, res) {
+// 500        internal error
+app.get("/api/itemID", function(req, res) {
   Item.find({}, function(err, items) {
     if (err) {
       res.status(500).send({ err: "Could not fetch item" });
@@ -45,15 +57,15 @@ app.get("/api/item", function(req, res) {
 // Parameter:
 // ItemId: the id of each item
 // Code:
-// 200        successful operation
-// 500        internal connection error
-app.post("/api/item", function(req, res) {
+// 201        resource successfully create
+// 500        internal error
+app.post("/api/itemID", function(req, res) {
   const item = new Item(req.body);
   item.save(function(err, savedItem) {
     if (err) {
       res.status(500).send({ error: "Could not save product" });
     } else {
-      res.send(savedItem);
+      res.status(201).send(savedItem);
     }
   });
 });
@@ -64,7 +76,7 @@ app.post("/api/item", function(req, res) {
 // Code:
 // 200        successful operation
 // 400        invalid input
-app.get("/api/search", function(req, res) {
+app.get("/api/itemMeta", function(req, res) {
   const url = `http://api.walmartlabs.com/v1/items?ids=${itemList}&apiKey=${
     keys.walmartKey
   }`;

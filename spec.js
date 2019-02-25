@@ -14,14 +14,14 @@ describe("loading express", function() {
       .get("/api")
       .expect(200, done);
   });
-  it("reponds to /api/search with keyword", function test(done) {
+  it("reponds to /api/itemMeta with keyword", function test(done) {
     request(server)
-      .get("/api/search?keyword=backpack")
+      .get("/api/itemMeta?keyword=backpack")
       .expect(200, done);
   });
-  it("reponds to /api/search wihout keyword", function test(done) {
+  it("reponds to /api/itemMeta wihout keyword", function test(done) {
     request(server)
-      .get("/api/search")
+      .get("/api/itemMeta")
       .expect(400, done);
   });
 });

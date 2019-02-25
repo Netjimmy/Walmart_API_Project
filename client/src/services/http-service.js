@@ -13,7 +13,7 @@ class HttpService {
     const promise = new Promise((resolve, reject) => {
       // fetch("http://localhost:5000/search?keyword=" + keyword)
       axios
-        .get("/api/search?keyword=" + keyword)
+        .get("/api/itemMeta?keyword=" + keyword)
         .then(response => {
           // console.log(response.data);
           resolve(response.data);
