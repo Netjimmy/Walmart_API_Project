@@ -58,10 +58,18 @@ module.exports = {
 
 #### The search bar
 
-![Screenshot](pic/search_bar.png)
+<img src="pic/search_bar.png" width="700">
 
 #### The search result
 
-Enter any keyword in search bar will display the items which contains keyword in discription. Item shows the picture, name, price and the link to url
+Enter any keyword in search bar will display the items which contains keyword in discription. Item shows the picture, name, price and the link to url.
 
-![Screenshot](pic/search_display.png)
+<img src="pic/search_result.png" width="500">
+
+If user doesn't enter any keyword, shows a warming
+
+<img src="pic/search_nokeyword.png" width="500">
+
+If no relevant items found with keyword
+
+<img src="pic/search_no_result.png" width="500">
